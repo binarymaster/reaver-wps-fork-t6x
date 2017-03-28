@@ -44,7 +44,7 @@ int process_arguments(int argc, char **argv)
     FILE *out_file;
     char bssid[MAC_ADDR_LEN] = { 0 };
     char mac[MAC_ADDR_LEN] = { 0 };
-    char *short_options = "W:K:b:e:m:i:t:d:c:T:x:r:g:l:o:p:s:C:1:2:F:R:ZA5ELfnqvDShwXNPH0I";
+    char *short_options = "W:K:b:e:m:i:t:d:c:T:x:r:g:l:o:p:B:s:C:1:2:F:R:ZA5ELfnqvDShwXNPH0I";
     struct option long_options[] = {
 		{ "generate-pin", required_argument, NULL, 'W' },
 		{ "stop-in-m1", no_argument, NULL, '0' },
@@ -68,6 +68,7 @@ int process_arguments(int argc, char **argv)
         { "max-attempts", required_argument, NULL, 'g' },
         { "out-file", required_argument, NULL, 'o' },
         { "pin", required_argument, NULL, 'p' },
+        { "pin-string", required_argument, NULL, 'B' },
         { "exec", required_argument, NULL, 'C' },
         { "p1-index", required_argument, NULL, '1' },
         { "p2-index", required_argument, NULL, '2' },
@@ -158,8 +159,16 @@ int process_arguments(int argc, char **argv)
             case 'p':
                 parse_static_pin(optarg);
                 break;
-            case 's':       
-                set_session(optarg);   
+            case 'B':
+                if (optarg)
+                {
+                    set_quit_pin_attempts(1);
+                    set_pin_string_mode(1);
+                    set_pin_string(optarg);
+                }
+                break;
+            case 's':
+                set_session(optarg);
                 break;
             case 'C':
                 set_exec_string(optarg);
@@ -272,6 +281,8 @@ void init_default_settings(void)
     set_wifi_band(BG_BAND);
     set_p1_index(0);
     set_p2_index(0);
+    set_pin_string_mode(0);
+    set_pin_string("");
     set_op_pixie(0);
     set_op_autopass(1);
     set_pixie_loop(0);

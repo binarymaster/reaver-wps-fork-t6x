@@ -83,6 +83,7 @@ Optional Arguments:
 
 Advanced Options:
 	-p, --pin=<wps pin>             Use the specified 4 or 8 digit WPS pin
+	-B, --pin-string="wps pin"      Use the specified arbitrary string as WPS pin
 	-d, --delay=<seconds>           Set the delay between pin attempts [1]
 	-l, --lock-delay=<seconds>      Set the time to wait if the AP locks WPS pin attempts [60]
 	-F, --fake-delay=<seconds>      Set the time to sleep after received fake NACK [0]
@@ -180,7 +181,7 @@ The option `-a` of Wash will list all access points, including those without WPS
 ## Contribution
 
 Modifications made by:
-`t6_x`, `DataHead`, `Soxrok2212`, `Wiire`, `AAnarchYY`, `kib0rg`, `KokoSoft`, `rofl0r`, `horrorho` 
+`t6_x`, `DataHead`, `Soxrok2212`, `Wiire`, `AAnarchYY`, `kib0rg`, `KokoSoft`, `rofl0r`, `horrorho`, `binarymaster` 
 
 Some ideas made by:
 `nuroo`, `kcdtv`
